@@ -1,4 +1,8 @@
+'use client'
+
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import {
   Antenna,
   ChartNoAxesCombined,
@@ -10,6 +14,8 @@ import {
 } from 'lucide-react'
 
 const Cart = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   const CartItems = [
     {
       id: 1,
@@ -55,17 +61,14 @@ const Cart = () => {
     },
   ]
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 80, scale: 0.95 },
-    visible: (i: number) => ({
+    visible: (custom: number) => ({
       opacity: 1,
-      y: -i * 60, // overlapping effect
+      y: -custom * 60,
+      rotate: 0,
       scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-        delay: i * 0.2, // stagger animation
-      },
+      transition: { duration: 0.8, ease: 'easeOut', delay: custom * 0.2 },
     }),
   }
 
@@ -80,18 +83,20 @@ const Cart = () => {
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true, amount: 0.8 }}
+            whileHover={{ scale: 1.1 }}
+            onHoverStart={() => setHoveredIndex(index)}
+            onHoverEnd={() => setHoveredIndex(null)}
+            style={{ zIndex: hoveredIndex === index ? 50 : index }}
             className={`
               w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl
-              mt-[-40px] /* overlapping */
+              mt-[-40px]
               p-6
               bg-gradient-to-tr from-black via-gray-900 to-amber-900/40
               shadow-2xl shadow-black/50
               border border-gray-700
               rounded-3xl
               relative
-              z-[${index}]
               transform-gpu
-              hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/50
               transition-all duration-500
             `}
           >
