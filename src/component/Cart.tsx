@@ -62,11 +62,14 @@ const Cart = () => {
     visible: (i: number) => ({
       opacity: 1,
       y: -i * 95,
+      rotate: -5 + i * 2,
+
       scale: 1,
       transition: {
-        duration: 1.2,
+        duration: 0.8, //1.2,
         ease: 'easeOut',
-        delay: i * 0.2,
+        delay: i * 1.3, //i * 0.2,`
+        staggerChildren: 0.15,
       },
     }),
   }
@@ -76,7 +79,7 @@ const Cart = () => {
   return (
     <div className='text-white px-4 sm:px-6 md:px-8 relative'>
       <section
-        className='flex flex-col items-center relative py-10'
+        className='flex flex-col items-center relative py-10 '
         style={{ perspective: '1200px' }}
       >
         {CartItems.map((item, index) => (
