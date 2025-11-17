@@ -53,7 +53,7 @@ const Cart = () => {
       id: 7,
       title: 'Precision. Control. Freedom',
       description: 'Built for traders who demand more',
-      icon: <Crosshair size={40} />,
+      icon: <Crosshair size={36} />,
     },
   ]
 
@@ -62,14 +62,14 @@ const Cart = () => {
     visible: (i: number) => ({
       opacity: 1,
       y: -i * 95,
-      rotate: -5 + i * 2,
+      // rotate: -2 + i * 2,
 
       scale: 1,
       transition: {
         duration: 0.8, //1.2,
         ease: 'easeOut',
         delay: i * 1.3, //i * 0.2,`
-        staggerChildren: 0.15,
+        staggerChildren: 0.25,
       },
     }),
   }
