@@ -1,4 +1,3 @@
-'use client'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { useState } from 'react'
@@ -18,37 +17,37 @@ const Cart = () => {
       id: 1,
       title: 'We dont follow trends',
       description: 'We design what prop tranding should feel like',
-      icon: <TrendingUp size={40} />,
+      icon: <TrendingUp size={36} />,
     },
     {
       id: 2,
       title: 'Trade with clarity',
       description: 'Every rule exists to empower, not restrict',
-      icon: <Antenna size={40} />,
+      icon: <Antenna size={36} />,
     },
     {
       id: 3,
       title: 'Every parameter makes',
       description: 'Transparent, balanced, and fair from day one',
-      icon: <SlidersHorizontal size={40} />,
+      icon: <SlidersHorizontal size={36} />,
     },
     {
       id: 4,
       title: 'Grow without limits.',
       description: 'The better you perform, the more we scale with you',
-      icon: <Sprout size={40} />,
+      icon: <Sprout size={36} />,
     },
     {
       id: 5,
       title: 'Your focus on the charts',
       description: 'We handle everything else from funding to payouts',
-      icon: <ChartNoAxesCombined size={40} />,
+      icon: <ChartNoAxesCombined size={36} />,
     },
     {
       id: 6,
       title: 'No distractions, No noise',
       description: 'Just pure performance',
-      icon: <VolumeOff size={40} />,
+      icon: <VolumeOff size={36} />,
     },
     {
       id: 7,
@@ -62,7 +61,7 @@ const Cart = () => {
     hidden: { opacity: 0, y: 90, scale: 0.95 },
     visible: (i: number) => ({
       opacity: 1,
-      y: -i * 65,
+      y: -i * 95,
       scale: 1,
       transition: {
         duration: 1.2,
