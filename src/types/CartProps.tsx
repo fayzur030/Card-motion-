@@ -1,10 +1,13 @@
+import { MotionValue } from "framer-motion"
+import type { ReactNode } from "react"
+
+
 export interface CardProps {
-  i: number
   title: string
   description: string
-  icon: React.ReactNode
-  color: string
-  progress: any
+  icon: ReactNode
+  rotate: number
+  color?: string
+  progress: MotionValue<number>
   range: number[]
-  targetScale: number
 }
