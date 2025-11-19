@@ -85,7 +85,7 @@ export default function FramerStackMotion() {
             icon={card.icon}
             rotate={card.rotate}
             progress={scrollYProgress}
-            range={[start, end]}
+            range={[start, end ]}
           />
         )
       })}
@@ -103,7 +103,7 @@ function StackCard({
   range,
 }: CardProps) {
   const scale = useTransform(progress, range, [1, 0.85])
-  const moveUp = useTransform(progress, range, [5, -180])
+  const moveUp = useTransform(progress, range, [5, -150])
 
   return (
     <motion.div

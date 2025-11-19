@@ -111,11 +111,9 @@ function Card({
 }: CardProps) {
   const ref = useRef(null)
 
-  // Scale effect like framer
   const scale = useTransform(progress, range, [1, 0.85])
 
-  // Y movement — Framer-style stacking effect
-  const translateY = useTransform(progress, range, [0, -150])
+  const translateY = useTransform(progress, range, [90, -150])
 
   return (
     <div
@@ -128,10 +126,11 @@ function Card({
           y: translateY,
           rotate,
           backgroundColor: color,
+          
         }}
         className='bg-gradient-to-tr from-black via-gray-900 to-amber-900/40
           flex flex-col justify-center relative
-          h-[330px] w-[70%] p-10 origin-top
+          h-[330px] w-[50%] p-10 origin-top
           border border-white/30 rounded-3xl shadow-xl'
       >
         <div
