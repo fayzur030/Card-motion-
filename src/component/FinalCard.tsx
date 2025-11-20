@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import {
   Antenna,
   ChartNoAxesCombined,
@@ -62,6 +62,30 @@ const cards = [
   },
 ]
 
+function Card({
+  card,
+  index,
+  scrollYProgress,
+}: {
+  card: (typeof cards)[0]
+  index: number
+  scrollYProgress: MotionValue<number>
+}) {
+  const scale = useTransform(scrollYProgress, [0, 1], [0.95 + index * 0.01, 1])
+  const y = useTransform(scrollYProgress, [0, 1], [50, 0])
+
+  return (
+    <motion.div
+      style={{ scale, y, rotate: card.rotate }}
+      className={`sticky top-20 mb-6 text-white bg-gradient-to-tr from-black via-gray-900 to-amber-900/40 rounded-2xl shadow-lg p-6 border border-gray-500`}
+    >
+      <div className='mb-4'>{card.icon}</div>
+      <h2 className='text-xl font-bold mb-2'>{card.title}</h2>
+      <p className='text-gray-400'>{card.description}</p>
+    </motion.div>
+  )
+}
+
 export default function StackingStickyCards() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -72,26 +96,14 @@ export default function StackingStickyCards() {
   return (
     <section className='h-[300vh] flex items-start justify-center bg-black pt-20'>
       <div className='w-full max-w-sm relative' ref={ref}>
-        {cards.map((card, index) => {
-          const scale = useTransform(
-            scrollYProgress,
-            [0, 1],
-            [0.95 + index * 0.01, 1]
-          )
-          const y = useTransform(scrollYProgress, [0, 1], [50, 0])
-
-          return (
-            <motion.div
-              key={card.id}
-              style={{ scale, y, rotate: card.rotate }}
-              className={`sticky top-20 mb-6 text-white bg-gradient-to-tr from-black via-gray-900 to-amber-900/40 rounded-2xl shadow-lg p-6 border border-gray-500`}
-            >
-              <div className='mb-4'>{card.icon}</div>
-              <h2 className='text-xl font-bold mb-2'>{card.title}</h2>
-              <p className='text-gray-400'>{card.description}</p>
-            </motion.div>
-          )
-        })}
+        {cards.map((card, index) => (
+          <Card
+            key={card.id}
+            card={card}
+            index={index}
+            scrollYProgress={scrollYProgress}
+          />
+        ))}
       </div>
     </section>
   )
